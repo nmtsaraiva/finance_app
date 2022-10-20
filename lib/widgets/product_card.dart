@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
-  ProductCard({super.key, required this.name, required this.value, required this.dateTime, required this.typeOfPayment, required this.installments});
+class ProductCard extends StatefulWidget {
+  const ProductCard({super.key, required this.name, required this.value, required this.dateTime, required this.typeOfPayment, required this.installments});
 
   final String name;
   final double value;
@@ -11,7 +11,13 @@ class ProductCard extends StatelessWidget {
   final String typeOfPayment;
   final int installments;
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   List<Color> colors = [Colors.blue, Colors.red, Colors.green, Colors.yellow, Colors.pink, Colors.purple];
+
   @override
   Widget build(BuildContext context) {
     Random random = Random();
@@ -22,11 +28,11 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Column(
             children: [
-              Text(name, style: const TextStyle(fontSize: 20),),
-              Text(value.toString()),
-              Text(dateTime.toString()),
-              Text(typeOfPayment),
-              Text(installments.toString())
+              Text(widget.name, style: const TextStyle(fontSize: 20),),
+              Text(widget.value.toString()),
+              Text(widget.dateTime.toString()),
+              Text(widget.typeOfPayment),
+              Text(widget.installments.toString())
             ],
           ),
         )
